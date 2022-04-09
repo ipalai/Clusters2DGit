@@ -8,7 +8,10 @@ This repository contains code to repeat the simulations described in the followi
 --------------
  DESCRIPTION
 --------------
-The code creates LAMMPS input scripts. The system contains 2 types of patchy particles (A and B). They have finite valence q_A = q_B = q and can form specific heterotypic bonds (A with B). 
+
+The Python code creates LAMMPS input scripts, two of which are provided as examples. 
+
+The system contains 2 types of patchy particles (A and B). They have finite valence q_A = q_B = q and can form specific heterotypic bonds (A with B). 
 
 In StaticClusters, no isotropic attraction between particles is present, so that clusters are solid.
 In FluidCLusters, an isotropic attraction (A-B, A-A and B-B) is added, so that clusters are fluid.

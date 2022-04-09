@@ -1,0 +1,40 @@
+units                  lj
+dimension              2
+atom_style             full  
+boundary               p p p   
+read_data              Config_2d_Nowca_ep10.0_sp2.0_el10.0_sl0.1_rl0.2_d0.475_nA200_qA4_nB200_qB4_T1_Tdamp1.0_dA0.0300_0.dat 
+neighbor               0.3 bin
+neigh_modify           every 1 delay 1
+pair_style             cosine/squared 3.000000 
+pair_coeff             * * 0.000000 0.100000 0.100000 wca 
+pair_coeff             1 1 10.000000 2.000000 2.000000 wca 
+pair_coeff             1 6 10.000000 2.000000 2.000000 wca 
+pair_coeff             6 6 10.000000 2.000000 2.000000 wca 
+pair_coeff             2 7 10.0 0.1 0.30000000000000004 
+pair_coeff             2 8 10.0 0.1 0.30000000000000004 
+pair_coeff             2 9 10.0 0.1 0.30000000000000004 
+pair_coeff             2 10 10.0 0.1 0.30000000000000004 
+pair_coeff             3 7 10.0 0.1 0.30000000000000004 
+pair_coeff             3 8 10.0 0.1 0.30000000000000004 
+pair_coeff             3 9 10.0 0.1 0.30000000000000004 
+pair_coeff             3 10 10.0 0.1 0.30000000000000004 
+pair_coeff             4 7 10.0 0.1 0.30000000000000004 
+pair_coeff             4 8 10.0 0.1 0.30000000000000004 
+pair_coeff             4 9 10.0 0.1 0.30000000000000004 
+pair_coeff             4 10 10.0 0.1 0.30000000000000004 
+pair_coeff             5 7 10.0 0.1 0.30000000000000004 
+pair_coeff             5 8 10.0 0.1 0.30000000000000004 
+pair_coeff             5 9 10.0 0.1 0.30000000000000004 
+pair_coeff             5 10 10.0 0.1 0.30000000000000004 
+velocity               all create 1 1 
+log                    Results_el10.0_qA4_qB4/Log_2d_Nowca_ep10.0_sp2.0_el10.0_sl0.1_rl0.2_d0.475_nA200_qA4_nB200_qB4_T1_Tdamp1.0_dA0.0300_0.dat
+fix                    fLANG all langevin 1 1 1.0 100
+neigh_modify           exclude molecule/intra all
+fix                    rigidNVE all rigid/nve molecule
+thermo                 500000
+thermo_style           custom step temp press etotal epair
+thermo_modify          flush yes
+timestep               0.01
+fix enforce_2d all enforce2d
+dump                       1 all custom 500000 Results_el10.0_qA4_qB4/Movie_2d_Nowca_ep10.0_sp2.0_el10.0_sl0.1_rl0.2_d0.475_nA200_qA4_nB200_qB4_T1_Tdamp1.0_dA0.0300_0.xyz id type mol x y z 
+run                    50000000
